@@ -10,3 +10,14 @@
 - Execute physical implementation with OpenLane/OpenROAD
 - Generate final GDSII layout
 - Verify layout using KLayout DRC/LVS
+
+## Tools
+
+| Stage | Tool |
+|--------|------|
+| RTL Design | Verilog |
+| Functional Verification | UVM |
+| Logic Synthesis | Yosys |
+| Physical Design | OpenLane |
+| Place & Route | OpenROAD |
+| Layout Verification | KLayout |
