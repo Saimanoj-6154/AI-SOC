@@ -200,3 +200,41 @@
 ```
 
 ---
+
+## Design Flow
+
+```
+RTL Design
+     │
+     ▼
+UVM Verification
+     │
+     ▼
+Synthesis (Yosys)
+     │
+     ▼
+Floorplanning
+     │
+     ▼
+Power Planning
+     │
+     ▼
+Placement
+     │
+     ▼
+Clock Tree Synthesis
+     │
+     ▼
+Routing
+     │
+     ▼
+Timing Closure
+     │
+     ▼
+DRC / LVS
+     │
+     ▼
+GDSII
+```
+
+---
