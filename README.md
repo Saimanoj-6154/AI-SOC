@@ -21,3 +21,182 @@
 | Physical Design | OpenLane |
 | Place & Route | OpenROAD |
 | Layout Verification | KLayout |
+
+## Repo Structure
+```
+├── README.md
+├── LICENSE
+├── .gitignore
+│
+├── docs/
+│   ├── architecture.md
+│   ├── project_plan.md
+│   ├── verification_plan.md
+│   ├── physical_design_flow.md
+│   ├── timing_closure.md
+│   ├── floorplan.md
+│   ├── power_analysis.md
+│   ├── routing.md
+│   └── final_report.md
+│
+├── specs/
+│   ├── soc_specification.pdf
+│   ├── memory_map.md
+│   ├── instruction_set.md
+│   └── interfaces.md
+│
+├── rtl/
+│   ├── top/
+│   │   └── ai_soc_top.v
+│   │
+│   ├── cpu/
+│   │   ├── riscv_core.v
+│   │   ├── decoder.v
+│   │   ├── alu.v
+│   │   ├── register_file.v
+│   │   ├── csr.v
+│   │   ├── controller.v
+│   │   └── pipeline/
+│   │
+│   ├── accelerator/
+│   │   ├── mac_array.v
+│   │   ├── systolic_array.v
+│   │   ├── activation.v
+│   │   ├── pooling.v
+│   │   ├── dma.v
+│   │   └── controller.v
+│   │
+│   ├── memory/
+│   │   ├── instruction_memory.v
+│   │   ├── data_memory.v
+│   │   ├── scratchpad.v
+│   │   └── cache/
+│   │
+│   ├── bus/
+│   │   ├── axi_interconnect.v
+│   │   ├── arbiter.v
+│   │   └── decoder.v
+│   │
+│   ├── peripherals/
+│   │   ├── gpio.v
+│   │   ├── uart.v
+│   │   ├── spi.v
+│   │   ├── i2c.v
+│   │   ├── timer.v
+│   │   └── pwm.v
+│   │
+│   └── common/
+│       ├── defines.vh
+│       └── parameters.vh
+│
+├── tb/
+│   ├── interfaces/
+│   ├── agents/
+│   ├── sequences/
+│   ├── scoreboard/
+│   ├── coverage/
+│   ├── env/
+│   ├── tests/
+│   ├── pkg/
+│   └── top/
+│
+├── verification/
+│   ├── assertions/
+│   ├── functional_coverage/
+│   ├── formal/
+│   ├── reports/
+│   └── regression/
+│
+├── constraints/
+│   ├── pin_order.cfg
+│   ├── floorplan.tcl
+│   ├── pdn.tcl
+│   ├── placement.tcl
+│   ├── routing.tcl
+│   ├── timing.sdc
+│   └── clock.sdc
+│
+├── openlane/
+│   ├── config.json
+│   ├── scripts/
+│   └── runs/
+│
+├── openroad/
+│   ├── scripts/
+│   ├── reports/
+│   └── logs/
+│
+├── klayout/
+│   ├── drc/
+│   ├── lvs/
+│   ├── screenshots/
+│   └── scripts/
+│
+├── synthesis/
+│   ├── yosys/
+│   ├── netlists/
+│   ├── reports/
+│   └── scripts/
+│
+├── gds/
+│   ├── final/
+│   ├── reports/
+│   └── screenshots/
+│
+├── simulation/
+│   ├── filelists/
+│   ├── scripts/
+│   ├── waves/
+│   └── logs/
+│
+├── software/
+│   ├── baremetal/
+│   ├── firmware/
+│   ├── linker/
+│   └── tests/
+│
+├── scripts/
+│   ├── build.sh
+│   ├── synth.sh
+│   ├── verify.sh
+│   ├── openlane.sh
+│   ├── openroad.sh
+│   ├── klayout.sh
+│   ├── clean.sh
+│   └── regress.sh
+│
+├── results/
+│   ├── synthesis/
+│   ├── verification/
+│   ├── timing/
+│   ├── power/
+│   ├── area/
+│   └── gdsii/
+│
+└── images/
+    ├── architecture.png
+    ├── floorplan.png
+    ├── layout.png
+    └── chip_render.png
+
+```
+
+## Project Architecture
+
+```
+                    +----------------------+
+                    |      RISC-V CPU      |
+                    +----------+-----------+
+                               |
+                    +----------+-----------+
+                    |    AXI Interconnect  |
+                    +----------+-----------+
+                               |
+      -------------------------------------------------------
+      |              |             |            |            |
++-----------+  +-------------+ +--------+ +---------+ +----------+
+| AI Engine |  | SRAM/Cache  | | UART   | | SPI/I2C | | GPIO/PWM |
++-----------+  +-------------+ +--------+ +---------+ +----------+
+```
+
+---
