@@ -238,3 +238,139 @@ GDSII
 ```
 
 ---
+
+# AI SoC (RTL → GDSII)
+
+A complete open-source AI System-on-Chip implementation covering the complete ASIC design flow from RTL development to GDSII generation.
+
+The project demonstrates an industrial RTL-to-GDSII flow using modern open-source EDA tools.
+
+---
+
+## Objectives
+
+- Design a RISC-V based AI SoC
+- Develop reusable RTL modules in Verilog
+- Verify the complete design using UVM
+- Perform synthesis using Yosys
+- Execute physical implementation with OpenLane/OpenROAD
+- Generate final GDSII layout
+- Verify layout using KLayout DRC/LVS
+
+---
+
+## Toolchain
+
+| Stage | Tool |
+|--------|------|
+| RTL Design | Verilog |
+| Functional Verification | UVM |
+| Logic Synthesis | Yosys |
+| Physical Design | OpenLane |
+| Place & Route | OpenROAD |
+| Layout Verification | KLayout |
+
+---
+
+# Project Architecture
+
+```
+                    +----------------------+
+                    |      RISC-V CPU      |
+                    +----------+-----------+
+                               |
+                    +----------+-----------+
+                    |    AXI Interconnect  |
+                    +----------+-----------+
+                               |
+      -------------------------------------------------------
+      |              |             |            |            |
++-----------+  +-------------+ +--------+ +---------+ +----------+
+| AI Engine |  | SRAM/Cache  | | UART   | | SPI/I2C | | GPIO/PWM |
++-----------+  +-------------+ +--------+ +---------+ +----------+
+```
+
+---
+
+# Design Flow
+
+```
+RTL Design
+     │
+     ▼
+UVM Verification
+     │
+     ▼
+Synthesis (Yosys)
+     │
+     ▼
+Floorplanning
+     │
+     ▼
+Power Planning
+     │
+     ▼
+Placement
+     │
+     ▼
+Clock Tree Synthesis
+     │
+     ▼
+Routing
+     │
+     ▼
+Timing Closure
+     │
+     ▼
+DRC / LVS
+     │
+     ▼
+GDSII
+```
+
+---
+
+# Repository Structure
+
+```
+docs/            Documentation
+rtl/             Verilog source files
+tb/              UVM Verification Environment
+verification/    Assertions & Coverage
+constraints/     OpenLane constraints
+openlane/        OpenLane configuration
+openroad/        OpenROAD scripts
+klayout/         DRC/LVS
+simulation/      RTL simulations
+software/        Firmware & Bare-metal tests
+gds/             Final layout
+results/         Reports
+```
+
+---
+
+# Verification
+
+- UVM Testbench
+- Functional Coverage
+- Scoreboard
+- Assertions
+- Regression Testing
+
+---
+
+# Physical Design Flow
+
+- RTL Elaboration
+- Logic Synthesis
+- Floorplanning
+- Power Distribution Network
+- Global Placement
+- Detailed Placement
+- Clock Tree Synthesis
+- Global Routing
+- Detailed Routing
+- Static Timing Analysis
+- DRC
+- LVS
+- GDSII Export
